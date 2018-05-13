@@ -1,0 +1,847 @@
+{
+	"info": {
+		"_postman_id": "3be3ee88-0fc0-4a84-a5bb-0fd576db643b",
+		"name": "BONUS TASK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Purchase",
+			"description": "",
+			"item": [
+				{
+					"name": "Create purchase with existing pet",
+					"description": "",
+					"item": [
+						{
+							"name": "Create new pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9696,\r\n  \"category\": {\r\n    \"id\": 5,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Catty\",\r\n  \"photoUrls\": [\r\n    \"\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+								},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/pet/",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new purchase with existing pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"petId\": 9696,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+								},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify creation of new order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0b4ff300-0244-4ad9-aab8-daaf3d499866",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order/1",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create purchase with non-existing pet",
+					"description": "",
+					"item": [
+						{
+							"name": "Delete existing pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/pet/9696",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet",
+										"9696"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create purchase with non-existing pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"petId\": 9696,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+								},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Validation",
+					"description": "",
+					"item": [
+						{
+							"name": "Invalid data",
+							"description": "",
+							"item": [
+								{
+									"name": "Create new pet",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 5,\r\n  \"category\": {\r\n    \"id\": 5,\r\n    \"name\": \"Fishes\"\r\n  },\r\n  \"name\": \"Fishy\",\r\n  \"photoUrls\": [\r\n    \"\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/pet",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Array into the string fields",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 5,\r\n  \"petId\": 5,\r\n  \"quantity\": 0,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": [\"placed\", \"approved\", \"delivered\"],\r\n  \"complete\": [\"false\", \"true\"]\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Invalid data in numeric fields",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": \"test,<>\",\r\n  \"petId\": \"test,<>\",\r\n  \"quantity\": \"test,<>\",\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Invalid data in \"Date\" field",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 1,\r\n  \"petId\": 5,\r\n  \"quantity\": 6,\r\n  \"shipDate\": \"test data\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Max+1 value in the numeric fields (int_64)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 9223372036854775808,\r\n  \"petId\": 9223372036854775808,\r\n  \"quantity\": 5,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Max+1 value in the numeric fields (int_32)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 5,\r\n  \"petId\": 5,\r\n  \"quantity\": 2147483648,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Valid data",
+							"description": "",
+							"item": [
+								{
+									"name": "Create new pet",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 1,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Category\"\r\n  },\r\n  \"name\": \"Puppy\",\r\n  \"photoUrls\": [\r\n    \"\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/pet",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Valid data type for all fields",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": 121212,\r\n  \"petId\": 5,\r\n  \"quantity\": 45454545,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed <> 555\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Valid field length",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "special-key",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\":  \"223372036854775807\",\r\n  \"petId\":  \"223372036854775807\",\r\n  \"quantity\": \"2147483647\",\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+										},
+										"url": {
+											"raw": "http://petstore.swagger.io/v2/store/order",
+											"protocol": "http",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Delete purchase",
+			"description": "",
+			"item": [
+				{
+					"name": "Delete existing oredr",
+					"description": "",
+					"item": [
+						{
+							"name": "Create new pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 9696,\r\n  \"category\": {\r\n    \"id\": 5,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Catty\",\r\n  \"photoUrls\": [\r\n    \"\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+								},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/pet/",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new purchase with existing pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"petId\": 9696,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-13T07:31:19.580Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+								},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify deleting of the order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order/1",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete existing order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order/1",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Delete non-existing order",
+					"description": "",
+					"item": [
+						{
+							"name": "Delete existing order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order/1",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete non-existing existing order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "special-key",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://petstore.swagger.io/v2/store/order/1",
+									"protocol": "http",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
